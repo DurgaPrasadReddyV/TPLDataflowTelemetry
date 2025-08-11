@@ -15,6 +15,8 @@ builder.Services.AddSingleton(new TplTelemetryOptions
     MeterName = "MyCompany.TplDataflow"
 });
 builder.Services.AddSingleton<ITplTelemetry, TplTelemetry>();
+builder.Services.AddSingleton<IOrderPipeline, OrderPipeline>();
+builder.Services.AddHostedService<DemoRunner>();
 
 var app = builder.Build();
 

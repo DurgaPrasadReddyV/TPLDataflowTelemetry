@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPLDataflowTelemetry.AppHost", "TPLDataflowTelemetry.AppHost\TPLDataflowTelemetry.AppHost.csproj", "{FC4956C0-E322-48B3-A33E-8CF12CB9107F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPLDataflowTelemetry.ServiceDefaults", "TPLDataflowTelemetry.ServiceDefaults\TPLDataflowTelemetry.ServiceDefaults.csproj", "{90DD9C20-39E3-C795-00EC-453767A42880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPLDataflowTelemetry.ApiService", "TPLDataflowTelemetry.ApiService\TPLDataflowTelemetry.ApiService.csproj", "{CCB6EED0-DF5D-434C-6D9E-01A6EA631B34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC4956C0-E322-48B3-A33E-8CF12CB9107F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4956C0-E322-48B3-A33E-8CF12CB9107F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4956C0-E322-48B3-A33E-8CF12CB9107F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4956C0-E322-48B3-A33E-8CF12CB9107F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DD9C20-39E3-C795-00EC-453767A42880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DD9C20-39E3-C795-00EC-453767A42880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DD9C20-39E3-C795-00EC-453767A42880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DD9C20-39E3-C795-00EC-453767A42880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB6EED0-DF5D-434C-6D9E-01A6EA631B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB6EED0-DF5D-434C-6D9E-01A6EA631B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB6EED0-DF5D-434C-6D9E-01A6EA631B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB6EED0-DF5D-434C-6D9E-01A6EA631B34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B359257E-537B-4C0F-AAE7-AC75F9C45137}
+	EndGlobalSection
+EndGlobal

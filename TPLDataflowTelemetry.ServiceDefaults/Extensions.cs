@@ -62,7 +62,12 @@ public static class Extensions
             })
             .WithTracing(tracing =>
             {
-                tracing.AddSource(builder.Environment.ApplicationName).AddSource("MyCompany.TplDataflow")
+                tracing.AddSource(builder.Environment.ApplicationName)
+                .SetSampler(new ParentBasedSampler(new AlwaysOnSampler()))
+                .AddSource("MyCompany.TplDataflow")
+                .AddSource("TplDataflow.Pipeline")
+                .AddSource("tpl.dataflow.pipeline")
+                
                     .AddAspNetCoreInstrumentation(tracing =>
                         // Exclude health check requests from tracing
                         tracing.Filter = context =>

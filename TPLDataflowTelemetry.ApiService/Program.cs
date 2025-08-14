@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using TPLDataflowTelemetry.ApiService;
+using TplDataflowTracing;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,16 +13,18 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddSingleton(new ActivitySource("SmartReturns.TplDataflow"));
 builder.Services.AddSingleton(new Meter("SmartReturns.TplDataflow"));
-builder.Services.AddSingleton<TplDataflowTracer>();
+builder.Services.AddSingleton<OrderProcessingPipeline>();
 
 var app = builder.Build();
 
 app.Lifetime.ApplicationStarted.Register(() =>
 {
     // Start the orders pipeline when the application starts.
-    var tracer = app.Services.GetRequiredService<TplDataflowTracer>();
+    var pipeline = app.Services.GetRequiredService<OrderProcessingPipeline>();
     var cts = new CancellationTokenSource();
-    Demo.RunOrdersPipeline(tracer, cts.Token).GetAwaiter().GetResult();
+    pipeline.ProcessOrdersAsync().GetAwaiter().GetResult();
+    OrderProcessingPipelineGPT.RunAsync().GetAwaiter().GetResult();
+    OrderProcessingPipelineGPT.ExampleAsync().GetAwaiter().GetResult();
 });
 
 // Configure the HTTP request pipeline.

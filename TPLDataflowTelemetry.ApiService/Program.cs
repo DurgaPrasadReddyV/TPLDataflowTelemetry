@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using TPLDataflowTelemetry.ApiService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,17 +10,19 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSingleton(new TplTelemetryOptions
-{
-    PipelineName = "ingest-v1",
-    ActivitySourceName = "MyCompany.TplDataflow",
-    MeterName = "MyCompany.TplDataflow"
-});
-builder.Services.AddSingleton<ITplTelemetry, TplTelemetry>();
-builder.Services.AddSingleton<IOrderPipeline, OrderPipeline>();
-builder.Services.AddHostedService<DemoRunner>();
+builder.Services.AddSingleton(new ActivitySource("SmartReturns.TplDataflow"));
+builder.Services.AddSingleton(new Meter("SmartReturns.TplDataflow"));
+builder.Services.AddSingleton<TplDataflowTracer>();
 
 var app = builder.Build();
+
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    // Start the orders pipeline when the application starts.
+    var tracer = app.Services.GetRequiredService<TplDataflowTracer>();
+    var cts = new CancellationTokenSource();
+    Demo.RunOrdersPipeline(tracer, cts.Token).GetAwaiter().GetResult();
+});
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
